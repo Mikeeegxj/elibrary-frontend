@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Providers } from "./providers";
 import theme from "./theme";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import { ColorModeScript } from "@chakra-ui/react";
 export const metadata = {
 	title: "E-Library HUB",

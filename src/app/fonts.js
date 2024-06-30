@@ -4,7 +4,8 @@ import {
 	Poppins,
 	Roboto,
     Montserrat,
-    Nunito_Sans
+    Nunito_Sans,
+	Oleo_Script_Swash_Caps,
 	
 } from "next/font/google";
 export const inter = Inter({ subsets: ["latin"] });
@@ -31,16 +32,23 @@ export const roboto = Roboto({
 
 export const montserrat = Montserrat({
 	subsets: ["latin"],
-	variable: "--font-roboto",
+	variable: "--font-montserrat",
 	display: "swap",
 	weight: ["100", "300", "400", "500", "700", "900"],
 });
 
-export const   nunito_sans =   Nunito_Sans({
+export const nunito_sans =   Nunito_Sans({
 	subsets: ["latin"],
-	variable: "--font-roboto",
+	variable: "--font-nunito-sans",
 	display: "swap",
 	weight: ["300", "400", "500", "700", "900"],
+});
+
+export const oleo =   Oleo_Script_Swash_Caps({
+	subsets: ["latin"],
+	variable: "--font-oleo",
+	display: "swap",
+	weight: ["400","700"],
 });
 
 

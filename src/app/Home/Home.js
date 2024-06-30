@@ -5,9 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './Book-swiper-styles.css';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 
-import BookCard from "../components/book-card/BookCard";
+import BookCard from "@/components/book-card/BookCard";
 export default function Home() {
     const books = [{
         name: "Really Good Actually",
@@ -55,6 +55,9 @@ export default function Home() {
                         pagination={{
                             clickable: true,
                         }}
+                        autoplay={{
+                            loop: true,
+                        }}
                         breakpoints={{
                             768: {
                                 slidesPerView: 2,
@@ -69,7 +72,7 @@ export default function Home() {
                                 spaceBetween: 20,
                             },
                         }}
-                        modules={[Pagination]}
+                        modules={[Pagination, Autoplay]}
                         className="mySwiper book-swiper"
                         style={{
                             paddingBottom: "30px",
