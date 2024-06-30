@@ -6,9 +6,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import './Book-swiper-styles.css';
 import { Pagination, Autoplay } from 'swiper/modules';
+import { useRouter } from "next/navigation";
 
 import BookCard from "@/components/book-card/BookCard";
 export default function Home() {
+    const router = useRouter();
     const books = [{
         name: "Really Good Actually",
         url: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSychbQIpvpgPKGVx0r75hjROWLFWQrrmPYu3u37aEk5P0qrd9z3Kg5C9Ssd9WFPcPyVWTO1Uvd8ATcgnPRqAlVlg_HveBWI7fmnLn7xmY&usqp=CAE"
@@ -36,7 +38,7 @@ export default function Home() {
                     <Text lineHeight={"25px"} maxW={"550px"} fontSize={{ base: "14px", md: "16px" }} className={`${montserrat.className}`} >
                         It's time to update your reading list with some of the latest and greatest releases in the literary world. From heart-pumping thrillers to captivating memoirs, this week's new releases offer something for everyone
                     </Text>
-                    <Button color={"#fff"} bg="#FFCE1A" className={`${nunito_sans.className}`}>
+                    <Button color={"#fff"} bg="#FFCE1A" onClick={()=> router.push("/signup")} className={`${nunito_sans.className}`}>
                         Sign Up
                     </Button>
                 </VStack>

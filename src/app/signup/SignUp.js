@@ -56,11 +56,11 @@ const SignUp = ({ RegisterAccount }) => {
     return (
         <Box width={"100%"}>
             <Container display={"flex"} flexDir={"column"} alignItems={'center'} justifyContent={'center'} maxW="96em" h={"calc(100vh - 60px)"} >
-                <Text color={"#FFA500"} display={isRegistered ? "block" : "none"} fontSize={{ base: "28px", md: "40px" }} className={`${oleo.className}`} fontWeight={400}>
+                <Text color={"#FFA500"} display={isRegistered ? "none" : "block"} fontSize={{ base: "28px", md: "40px" }} className={`${oleo.className}`} fontWeight={400}>
                     Welcome to E-library Hub!
                 </Text>
                 <Box borderRadius={"5px"} p={5} bg={"#fff"} maxW={"400px"} width={"100%"}>
-                    {true ? (
+                    {isRegistered ? (
                         <>
                           
                             <VStack spacing={4}>
