@@ -8,6 +8,7 @@ import {
     IconButton,
     Button,
     Stack,
+    VStack,
     Collapse,
     Icon,
     Popover,
@@ -17,20 +18,26 @@ import {
     Image,
     useDisclosure,
     Container,
+    Divider,
+    HStack,
     Input, InputGroup, InputRightElement,
 } from '@chakra-ui/react'
-import { IconSearch } from "@tabler/icons-react";
+import { IconSearch, IconX, IconHeart, IconLogout, IconUser } from "@tabler/icons-react";
 import {
     HamburgerIcon,
     CloseIcon,
     ChevronDownIcon,
     ChevronRightIcon,
 } from '@chakra-ui/icons'
+import { GetCookie, LogoutAccount } from '@/actions/auth-actions';
+import { authStore } from '@/store/auth-store';
+import { lato, merriweather_sans, poppins, roboto } from '@/app/fonts'
 
 export default function Navbar() {
     const { isOpen, onToggle, onClose } = useDisclosure()
     const router = useRouter();
     const [isOpenUserMenu, setIsOpenUserMenu] = useState(false)
+    const { setAuth, isAuth, userInfo, setUserInfo } = authStore((state) => state);
     const [isClient, setIsClient] = useState(false)
     const pathname = usePathname()
 
@@ -42,9 +49,34 @@ export default function Navbar() {
         setIsOpenUserMenu(!isOpenUserMenu)
     }
 
-    useEffect(() => {
+    useEffect (() => {
         setIsOpenUserMenu(false)
-    }, [pathname])
+    },[pathname])
+    useEffect(() => {
+        const validate = async () => {
+            const { accessToken, refreshToken } = await GetCookie()
+            if (isAuth) {
+                if (!accessToken && !refreshToken) {
+                    setAuth(false)
+                    setUserInfo(null)
+                }
+            } else {
+                if (accessToken && refreshToken) {
+                    setAuth(true)
+                }
+            }
+        }
+        validate()
+        setIsClient(true)
+    }, [isAuth])
+
+    const handleLogoutAccount = async () => {
+        const isLogout = await LogoutAccount()
+        setAuth(!isLogout)
+        setUserInfo(null)
+        setIsOpenUserMenu(false)
+        router.push("/")
+    }
 
 
 
@@ -94,25 +126,83 @@ export default function Navbar() {
                                 <IconSearch />
                             </InputRightElement>
                         </InputGroup>
-                        <Button
-                            as={'a'}
-                            display={{ base: 'inline-flex', md: 'inline-flex' }}
-                            fontSize={'sm'}
-                            fontWeight={600}
-                            color={'white'}
-                            bg={"#fed238"}
-                            href={'/login'}
-                            _hover={{
-                                opacity: "0.7"
-                            }}>
-                            Login
-                        </Button>
+                        {
+                            isAuth ? (
+                                <Image cursor={"pointer"} height={"36px"} width={"36px"} onClick={handleOpenUserMenu} objectFit={"cover"} borderRadius={"50%"} src={"/assets/default_user.png"} />
+                            ) : (
+                                <Button
+                                as={'a'}
+                                display={{ base: 'inline-flex', md: 'inline-flex' }}
+                                fontSize={'sm'}
+                                fontWeight={600}
+                                color={'white'}
+                                bg={"#fed238"}
+                                href={'/login'}
+                                _hover={{
+                                    opacity: "0.7"
+                                }}>
+                                Login
+                            </Button>
+                            )
+                        }
+                       
                     </Stack>
                 </Flex>
 
                 <Collapse sx={{ maxW: "200px" }} in={isOpen} animateOpacity>
                     <MobileNav />
                 </Collapse>
+                {userInfo && (
+                    <Box zIndex={2000} background={"#fff"}
+                        borderRadius={"10px"}
+                        boxShadow={"2px 4px 10px 0px rgba(148,148,148,0.56)"}
+                        pos={"absolute"} bottom={"-160px"} right={"20px"}
+                        display={isOpenUserMenu ? "block" : "none"}
+                        width={"200px"}>
+                        <VStack padding={4} pos={"relative"} spacing={"10px"} alignItems={"flex-start"}>
+                            <IconButton onClick={() => setIsOpenUserMenu(false)} minW={"0px"} maxH={"0px"} pos={"absolute"} background={"none"} padding={"0px !important"} top={"13px"} right={"7px"} icon={<IconX size={"18px"} />} />
+                            <HStack spacing={3}>
+                                <IconUser />
+                                <VStack alignItems={"flex-start"} spacing={"none"}>
+                                    <Text _hover={{ color: "#FFCE1A", cursor: "pointer" }}
+                                        fontWeight={pathname === "/profile" ? 500 : 400}
+                                        color={pathname === "/profile" ? "#3394d7" : "#000"}
+                                        className={`${roboto.className}`}
+                                        onClick={() => router.push('/profile')}
+
+                                    >
+                                        {userInfo.full_name.length > 14 ? userInfo.first_name : userInfo.full_name}
+                                    </Text>
+                                    <Text color={"rgba(0,0,0,0.5)"} fontSize={"10px"}>
+                                        Account
+                                    </Text>
+                                </VStack>
+                            </HStack>
+                            <Divider />
+                            <HStack _hover={{ color: "#FFCE1A", cursor: "pointer" }} color={"rgba(0,0,0,0.6)"} spacing={3}>
+                                <IconHeart />
+                                <Text _hover={{ color: "#FFCE1A", cursor: "pointer" }}
+                                    color={"rgba(0,0,0,0.7)"}
+                                    className={`${roboto.className}`}
+                                    onClick={() => router.push('/create-post')}
+                                >
+                                    Favourite
+                                </Text>
+                            </HStack>
+                            <Divider />
+                            <HStack _hover={{ color: "#FFCE1A", cursor: "pointer" }} color={"rgba(0,0,0,0.6)"} spacing={3}>
+                                <IconLogout />
+                                <Text _hover={{ color: "#FFCE1A", cursor: "pointer" }}
+                                    color={"rgba(0,0,0,0.7)"}
+                                    className={`${roboto.className}`}
+                                    onClick={() => { handleLogoutAccount(); setIsOpenUserMenu(false); }}
+                                >
+                                    Logout
+                                </Text>
+                            </HStack>
+                        </VStack>
+                    </Box>
+                )}
             </Container>
         </Box>
     )
