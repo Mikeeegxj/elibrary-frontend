@@ -9,7 +9,7 @@ export default function Elibrary({ resCat }) {
     const [isClient, setIsClient] = useState(false)
     const [searchInput, setSearchInput] = useState(null)
     const [searchValue, setSearchValue] = useState(null)
-    const [selectedCategory, setSelectedCateogory] = useState(null)
+    const [selectedCategory, setSelectedCategory] = useState(null)
     const [selectedSort, setSelectedSort] = useState(null)
     const [books, setBooks] = useState(null)
     const [isError, setIsError] = useState(false)
@@ -48,9 +48,12 @@ export default function Elibrary({ resCat }) {
     return isClient && (
         <Container maxW={"96em"} my={8}>
             <Box className='flex mt-20 flex-row flex-wrap justify-center gap-5'>
+                <Button onClick={() => setSelectedCategory(null)} px={6} border={"1px solid #FFCE1A"} _hover={{ fontWeight: 800, transition: "all 0.5s ease" }} color={!selectedCategory ? "white" : "#FFCE1A"} bg={!selectedCategory ? "#FFCE1A" : "none"}  borderRadius={"20px"}>
+                    All
+                </Button>
                 {
                     categories?.map((category) => (
-                        <Button key={category.id} px={6} border={"1px solid #FFCE1A"} _hover={{ fontWeight: 800, transition: "all 0.5s ease" }} color={"#FFCE1A"} bg={"none"} borderRadius={"20px"}>
+                        <Button onClick={() => setSelectedCategory(category.id)} key={category.id} px={6} border={"1px solid #FFCE1A"} _hover={{ fontWeight: 800, transition: "all 0.5s ease" }} color={selectedCategory === category.id ? "white" : "#FFCE1A"} bg={selectedCategory === category.id ? "#FFCE1A" : "none"} borderRadius={"20px"}>
                             {category.name}
                         </Button>
                     ))
@@ -58,15 +61,15 @@ export default function Elibrary({ resCat }) {
             </Box>
             <HStack justifyContent={"space-between"} mt={9}>
 
-            <Select value={selectedSort} maxW={"200px"} onChange={(e) => setSelectedSort(e.target.value)} placeholder="">
+                <Select value={selectedSort} maxW={"200px"} onChange={(e) => setSelectedSort(e.target.value)} placeholder="">
                     <option value="-created_at">Recent</option>
-                        <option value="created_at">Older</option>
-                        <option value="-view_count">Popular</option>
-                        <option value="title">A to Z</option>
-                        <option value="-title">Z to A</option>
-                    </Select>
+                    <option value="created_at">Older</option>
+                    <option value="-view_count">Popular</option>
+                    <option value="title">A to Z</option>
+                    <option value="-title">Z to A</option>
+                </Select>
                 <InputGroup borderRadius={"25px"} background={"#EAEAEA"} maxW={"300px"}>
-                    <Input value={searchInput} onChange={handleSearchInput}  onKeyDown={handleKeyDown} placeholder='Search Your Books' />
+                    <Input value={searchInput} onChange={handleSearchInput} onKeyDown={handleKeyDown} placeholder='Search Your Books' />
                     <InputRightElement _hover={{ cursor: "pointer" }}>
                         <IconSearch />
                     </InputRightElement>
