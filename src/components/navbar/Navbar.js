@@ -20,9 +20,8 @@ import {
     Container,
     Divider,
     HStack,
-    Input, InputGroup, InputRightElement,
 } from '@chakra-ui/react'
-import { IconSearch, IconX, IconHeart, IconLogout, IconUser } from "@tabler/icons-react";
+import { IconX, IconHeart, IconLogout, IconUser } from "@tabler/icons-react";
 import {
     HamburgerIcon,
     CloseIcon,
@@ -120,12 +119,6 @@ export default function Navbar() {
                         direction={'row'}
                      
                         spacing={4}>
-                        <InputGroup display={{base:"none", md:"block"}} borderRadius={"25px"} background={"#EAEAEA"} maxW={"300px"}>
-                            <Input placeholder='Search Your Books'  />
-                            <InputRightElement _hover={{ cursor: "pointer" }}>
-                                <IconSearch />
-                            </InputRightElement>
-                        </InputGroup>
                         {
                             isAuth ? (
                                 <Image cursor={"pointer"} height={"36px"} width={"36px"} onClick={handleOpenUserMenu} objectFit={"cover"} borderRadius={"50%"} src={"/assets/default_user.png"} />

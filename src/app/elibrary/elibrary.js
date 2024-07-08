@@ -1,6 +1,7 @@
 'use client'
-import { Box, Button, Container, Stack, Text, Grid, Spinner, VStack } from "@chakra-ui/react"
+import { Box, Button, Container, Select, Input, InputGroup, InputRightElement, Text, Grid, Spinner, VStack, HStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
+import { IconSearch } from "@tabler/icons-react"
 import BookCard from "@/components/book-card/BookCard"
 import { FetchBooks } from "@/actions/book-actions"
 export default function Elibrary({ resCat }) {
@@ -34,6 +35,16 @@ export default function Elibrary({ resCat }) {
         setIsLoading(true)
         getBooks()
     }, [selectedCategory, searchValue, selectedSort])
+
+    const handleSearchInput = (e) => {
+        setSearchInput(e.target.value)
+    }
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            setSearchValue(searchInput)
+        }
+    }
+
     return isClient && (
         <Container maxW={"96em"} my={8}>
             <Box className='flex mt-20 flex-row flex-wrap justify-center gap-5'>
@@ -45,6 +56,22 @@ export default function Elibrary({ resCat }) {
                     ))
                 }
             </Box>
+            <HStack justifyContent={"space-between"} mt={9}>
+
+            <Select value={selectedSort} maxW={"200px"} onChange={(e) => setSelectedSort(e.target.value)} placeholder="">
+                    <option value="-created_at">Recent</option>
+                        <option value="created_at">Older</option>
+                        <option value="-view_count">Popular</option>
+                        <option value="title">A to Z</option>
+                        <option value="-title">Z to A</option>
+                    </Select>
+                <InputGroup borderRadius={"25px"} background={"#EAEAEA"} maxW={"300px"}>
+                    <Input value={searchInput} onChange={handleSearchInput}  onKeyDown={handleKeyDown} placeholder='Search Your Books' />
+                    <InputRightElement _hover={{ cursor: "pointer" }}>
+                        <IconSearch />
+                    </InputRightElement>
+                </InputGroup>
+            </HStack>
             {
                 isError ? (
                     <Text>

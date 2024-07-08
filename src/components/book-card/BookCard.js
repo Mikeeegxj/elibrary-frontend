@@ -10,16 +10,16 @@ export default function BookCard({book}) {
             <HStack alignItems={"flex-end"} spacing={1} p={5}>
                 <Image borderRadius={"12px"} src={book.image_file}
                     height={"280px"} width={"100%"} objectFit={"contain"} objectPosition={"center"} />
-                <VStack alignItems={"flex-start"} height={"100%"} width={"100%"} px={3} spacing={4}>
+                <VStack alignItems={"flex-start"} height={"100%"} width={"100%"} px={3} spacing={1}>
                     {/* <Badge mb={2} bg={"#3394d7"} fontSize={"10px"} padding={1} variant="solid" borderRadius={"5px"} colorScheme='green'> Nice</Badge> */}
                     <Text color={"#0D0842"} fontSize={"16px"} className={`${montserrat.className}`} fontWeight={400} noOfLines={1} overflow={"hidden"} sx={{ overflowWrap: 'break-word' }}>
                         {book.title}
                     </Text>
-                    <Text mt={1} color={"#0D0842"} fontSize={"14px"} className={`${nunito_sans.className}`} fontWeight={400} noOfLines={3} overflow={"hidden"} sx={{ overflowWrap: 'break-word' }}>
-                        {book.content}
+                    <Text color={"#0D0842"} opacity={"0.6"} fontSize={"14px"} className={`${nunito_sans.className}`} fontWeight={400} noOfLines={3} overflow={"hidden"} sx={{ overflowWrap: 'break-word' }}>
+                        ~{book.author}
                     </Text>
-                    <Text mt={1} color={"#0D0842"} fontSize={"16px"} className={`${nunito_sans.className}`} fontWeight={400} noOfLines={3} overflow={"hidden"} sx={{ overflowWrap: 'break-word' }}>
-                        Free
+                    <Text my={3} color={"#0D0842"} fontSize={"14px"} className={`${nunito_sans.className}`} fontWeight={400} noOfLines={3} overflow={"hidden"} sx={{ overflowWrap: 'break-word' }}>
+                        {book.content}
                     </Text>
                     <Button color={"white"} bg={"#FFCE1A"}>
                         Read
