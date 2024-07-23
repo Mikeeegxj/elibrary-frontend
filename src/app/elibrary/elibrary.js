@@ -48,7 +48,7 @@ export default function Elibrary({ resCat }) {
     return isClient && (
         <Container maxW={"96em"} my={8}>
             <Box className='flex mt-20 flex-row flex-wrap justify-center gap-5'>
-                <Button onClick={() => setSelectedCategory(null)} px={6} border={"1px solid #FFCE1A"} _hover={{ fontWeight: 800, transition: "all 0.5s ease" }} color={!selectedCategory ? "white" : "#FFCE1A"} bg={!selectedCategory ? "#FFCE1A" : "none"}  borderRadius={"20px"}>
+                <Button onClick={() => setSelectedCategory(null)} px={6} border={"1px solid #FFCE1A"} _hover={{ fontWeight: 800, transition: "all 0.5s easen" }} color={!selectedCategory ? "white" : "#FFCE1A"} bg={!selectedCategory ? "#FFCE1A" : "none"}  borderRadius={"20px"}>
                     All
                 </Button>
                 {

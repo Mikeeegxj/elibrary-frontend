@@ -21,7 +21,7 @@ export default function BookCard({book}) {
                     <Text my={3} color={"#0D0842"} fontSize={"14px"} className={`${nunito_sans.className}`} fontWeight={400} noOfLines={3} overflow={"hidden"} sx={{ overflowWrap: 'break-word' }}>
                         {book.content}
                     </Text>
-                    <Button color={"white"} bg={"#FFCE1A"}>
+                    <Button onClick={() => router.push(`/elibrary/${book.id}`)} color={"white"} bg={"#FFCE1A"}>
                         Read
                     </Button>
                 </VStack>

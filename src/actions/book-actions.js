@@ -22,6 +22,28 @@ export async function FetchCategories() {
     }
 } 
 
+export async function FetchBookDetail(id) {
+    try {
+        const res = await fetch(`${process.env.API_URL}resources/${id}`, {
+            method: 'GET',
+            cache: 'no-store',
+        })
+        const data = await res.json();
+        if (!res.ok) {
+            console.log("Error:", data);
+            return { "success": false, "message": "Fail to Get Resource"};
+        }
+
+        console.log("resource response -> ", data)
+        return { "success": true, data }
+    }
+    catch(error){
+        console.log(error)
+        return { "success": false, "message": "Fail API" }
+    }
+} 
+
+
 export async function FetchBooks(search, category, sort) {
     try {
         const res = await fetch(`${process.env.API_URL}resources/?sort=${sort?sort:""}&category=${category?category:""}&search=${search?search:""}`, {
