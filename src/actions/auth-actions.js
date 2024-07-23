@@ -38,6 +38,33 @@ export async function RegisterAccount(email, first_name, last_name, password) {
 }
 
 
+export async function ChangeProfileImage(formData) {
+	try {
+        const access_token = cookies().get('_access')?.value
+		const res = await fetch(`${process.env.API_URL}auth/profile/image`, {
+			method: 'PUT',
+			headers: {
+				"Authorization": `Bearer ${access_token}`
+			},
+			cache: 'no-store',
+			body: formData,
+		})
+        console.log("image res",res)
+		const data = await res.json();
+		if (!res.ok) {
+			console.log("Error:", data);
+			return { "success": false, "message": "Fail to Change Image"};
+		}
+
+		console.log("imagechange resposne:", data)
+		return { "success": true, data }
+	}
+	catch(error){
+        console.log(error)
+		return { "success": false, "message": "Fail API" }
+	}
+}
+
 export async function LoginAccount(email, password) {
 	try {
 		const oneDay = 24 * 60 * 60 * 1000 * 1
@@ -81,6 +108,33 @@ export async function LoginAccount(email, password) {
 	catch(error) {
 		console.log(error)
 		return { "success": false, "message": "Invalid Credential"}
+	}
+}
+
+export async function GetProfile() {
+	try {
+        const access_token = cookies().get('_access')?.value
+		const res = await fetch(`${process.env.API_URL}auth/profile/`, {
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+                "Authorization": `Bearer ${access_token}`
+			},
+			cache: 'no-store',
+		})
+		const data = await res.json();
+		console.log(data)
+	    if (!res.ok) {
+			console.log("Error:", data);
+			return { "success": false, "message":  "Unexpected Error Occur" };
+		}
+
+		console.log("register resposne:", data)
+		return { "success": true, data }
+	}
+	catch {
+        console.log("error")
+		return { "success": false, "message": "Invalid Credential" }
 	}
 }
 

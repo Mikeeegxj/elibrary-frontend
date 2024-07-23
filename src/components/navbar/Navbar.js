@@ -159,7 +159,7 @@ export default function Navbar() {
                                 <VStack alignItems={"flex-start"} spacing={"none"}>
                                     <Text _hover={{ color: "#FFCE1A", cursor: "pointer" }}
                                         fontWeight={pathname === "/profile" ? 500 : 400}
-                                        color={pathname === "/profile" ? "#3394d7" : "#000"}
+                                        color={pathname === "/profile" ? "#FED238" : "#000"}
                                         className={`${roboto.className}`}
                                         onClick={() => router.push('/profile')}
 
@@ -177,7 +177,7 @@ export default function Navbar() {
                                 <Text _hover={{ color: "#FFCE1A", cursor: "pointer" }}
                                     color={"rgba(0,0,0,0.7)"}
                                     className={`${roboto.className}`}
-                                    onClick={() => router.push('/create-post')}
+                                    onClick={() => router.push('/favourite')}
                                 >
                                     Favourite
                                 </Text>
