@@ -64,3 +64,56 @@ export async function FetchBooks(search, category, sort) {
         return { "success": false, "message": "Fail API" }
     }
 } 
+
+
+export async function FetchComments(id) {
+	try {
+        const access_token = cookies().get('_access')?.value
+		const res = await fetch(`${process.env.API_URL}comments/?resource_id=${id}`, {
+			method: 'GET',
+			cache: 'no-store',
+		})
+        console.log("comment res",res)
+		const data = await res.json();
+		if (!res.ok) {
+			return { "success": false, "message": "Fail to Fetch Comment"};
+		}
+
+		// console.log("Blog resposne:", data)
+		return { "success": true, data}
+	}
+	catch(error){
+        console.log("We go inside Error")
+		return { "success": false, "message": "Fail API" }
+	}
+}
+
+export async function SubmitComment(id,text) {
+	try {
+        const access_token = cookies().get('_access')?.value
+		const res = await fetch(`${process.env.API_URL}comments/`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${access_token}`
+			},
+			cache: 'no-store',
+			body: JSON.stringify({
+				text: text,
+				resource_id: id
+			}),
+		})
+        console.log("comment submit res",res)
+		const data = await res.json();
+		if (!res.ok) {
+			return { "success": false, "message": "Fail to Submit Comment"};
+		}
+
+		// console.log("Blog resposne:", data)
+		return { "success": true, data}
+	}
+	catch(error){
+        console.log("We go inside Error")
+		return { "success": false, "message": "Fail API" }
+	}
+}
