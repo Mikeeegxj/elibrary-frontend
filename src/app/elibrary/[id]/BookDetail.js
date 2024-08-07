@@ -3,16 +3,19 @@ import { poppins } from "@/app/fonts";
 import { Container, InputRightElement, VStack, Image, Text, InputGroup, Textarea, HStack, Box, Stack, Button, IconButton } from "@chakra-ui/react";
 import { decode } from 'html-entities';
 import { useEffect, useState } from "react";
-import { IconDownload } from "@tabler/icons-react";
+import { IconDownload, IconHeart } from "@tabler/icons-react";
 import { IconHeartFilled, IconEye, IconSend2 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { FetchComments, SubmitComment } from "@/actions/book-actions";
+import { AddFavourite, FetchComments, FetchFavourites, RemoveFavourite, SubmitComment } from "@/actions/book-actions";
+import { authStore } from '@/store/auth-store';
 import Comment from "@/components/comment/Comment";
 export default function BookDetail({ res }) {
     const [isClient, setIsClient] = useState(false)
     const [resource, setResource] = useState(null)
     const [comments, setComments] = useState(null)
     const [commentTxt, setCommentTxt] = useState('')
+    const {isAuth } = authStore((state) => state);
+    const [isFavourite,setIsFavourite] = useState(false)
     const router = useRouter()
 
 
@@ -27,15 +30,47 @@ export default function BookDetail({ res }) {
         if (response.success) {
             setComments(response.data)
         }
+    };
+
+    const addFavourites = async () => {
+        const response = await AddFavourite(resource.id);
+        if (response.success) {
+            setIsFavourite(true);
+        }
+    }
+
+    const removeFavourites = async () => {
+        const response = await RemoveFavourite(resource.id);
+        if (response.success) {
+            setIsFavourite(false);
+        }
+    }
+
+
+    const loadFavourites = async (id) => {
+        const response = await FetchFavourites();
+        if (response.success) {
+            console.log("Fav success")
+            // Check if any object in the array has a resource value of 4
+            const hasFavouriteResource = response.data?.some(item => item.resource === id);
+            setIsFavourite(hasFavouriteResource);
+        }
     }
 
     useEffect(() => {
         if (res.success) {
             setResource(res.data)
             loadComments(res.data.id)
+            console.log("Auth", isAuth)
+            if(isAuth) {
+                loadFavourites(res.data.id)
+            }
         }
         setIsClient(true)
-    }, [])
+    }, [isAuth])
+
+
+
 
     const handleTextOnChange = (e) => {
         e.preventDefault()
@@ -83,12 +118,20 @@ export default function BookDetail({ res }) {
                                 </Text>
                             </HStack>
                             <HStack display={{ base: "flex", md: "flex" }} alignItems={"center"} spacing={{ base: 2, md: 4 }} justifyContent={"center"}>
-                                <Box width={{ base: "24px", md: "28px" }} height={{ base: "24px", md: "28px" }}>
-                                    <IconHeartFilled style={{ width: "inherit", height: "inherit" }} color="#FF5480" />
-                                </Box>
-                                <Text color={"#97989F"} fontSize={"14px"}>
-                                    2
-                                </Text>
+                                {
+                                    isAuth && (
+                                    <Box width={{ base: "24px", md: "28px" }} height={{ base: "24px", md: "28px" }}>
+                                        {
+                                            isFavourite ? (
+                                                <IconHeartFilled style={{ width: "inherit", height: "inherit", cursor:"pointer" }} color="#FF5480" onClick={removeFavourites} />
+                                            ) : (
+                                                <IconHeart style={{ width: "inherit", height: "inherit", cursor:"pointer" }}  onClick={addFavourites} />
+                                            )
+                                        }
+                                        
+                                    </Box>
+                                    )
+                                }
                                 <Box width={{ base: "24px", md: "28px" }} height={{ base: "24px", md: "28px" }}>
                                     <IconEye style={{ width: "inherit", height: "inherit" }} />
                                 </Box>

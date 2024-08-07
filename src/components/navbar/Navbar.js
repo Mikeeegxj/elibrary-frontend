@@ -175,7 +175,7 @@ export default function Navbar() {
                             <HStack _hover={{ color: "#FFCE1A", cursor: "pointer" }} color={"rgba(0,0,0,0.6)"} spacing={3}>
                                 <IconHeart />
                                 <Text _hover={{ color: "#FFCE1A", cursor: "pointer" }}
-                                    color={"rgba(0,0,0,0.7)"}
+                                    color={pathname === "/favourite" ? "#FED238" : "#000"}
                                     className={`${roboto.className}`}
                                     onClick={() => router.push('/favourite')}
                                 >
@@ -355,10 +355,6 @@ const NAV_ITEMS = [
     {
         label: 'E-Library',
         href: '/elibrary',
-    },
-    {
-        label: 'Contact Us',
-        href: '/contact-us',
     },
 
 ]

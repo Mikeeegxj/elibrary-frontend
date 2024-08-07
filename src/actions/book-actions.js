@@ -73,7 +73,7 @@ export async function FetchComments(id) {
 			method: 'GET',
 			cache: 'no-store',
 		})
-        console.log("comment res",res)
+        // console.log("comment res",res)
 		const data = await res.json();
 		if (!res.ok) {
 			return { "success": false, "message": "Fail to Fetch Comment"};
@@ -103,7 +103,7 @@ export async function SubmitComment(id,text) {
 				resource_id: id
 			}),
 		})
-        console.log("comment submit res",res)
+        // console.log("comment submit res",res)
 		const data = await res.json();
 		if (!res.ok) {
 			return { "success": false, "message": "Fail to Submit Comment"};
@@ -111,6 +111,88 @@ export async function SubmitComment(id,text) {
 
 		// console.log("Blog resposne:", data)
 		return { "success": true, data}
+	}
+	catch(error){
+        console.log("We go inside Error")
+		return { "success": false, "message": "Fail API" }
+	}
+}
+
+export async function FetchFavourites() {
+	try {
+        const access_token = cookies().get('_access')?.value
+		const res = await fetch(`${process.env.API_URL}favourites/`, {
+			method: 'GET',
+			headers: {
+				"Authorization": `Bearer ${access_token}`
+			},
+			cache: 'no-store',
+		})
+        console.log("get fav res",res)
+		const data = await res.json();
+		if (!res.ok) {
+			return { "success": false, "message": "Fail to Fetch Faourite"};
+		}
+
+		// console.log("Blog resposne:", data)
+		return { "success": true, data}
+	}
+	catch(error){
+        console.log("We go inside Error")
+		return { "success": false, "message": "Fail API" }
+	}
+}
+
+export async function AddFavourite(id) {
+	try {
+        const access_token = cookies().get('_access')?.value
+		const res = await fetch(`${process.env.API_URL}favourites/`, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${access_token}`
+			},
+			cache: 'no-store',
+			body: JSON.stringify({
+				resource_id: id
+			}),
+		})
+        // console.log("comment submit res",res)
+		const data = await res.json();
+		if (!res.ok) {
+			return { "success": false, "message": "Fail to Add Fav"};
+		}
+
+		// console.log("Blog resposne:", data)
+		return { "success": true, data}
+	}
+	catch(error){
+        console.log("We go inside Error")
+		return { "success": false, "message": "Fail API" }
+	}
+}
+
+export async function RemoveFavourite(id) {
+	try {
+        const access_token = cookies().get('_access')?.value
+		const res = await fetch(`${process.env.API_URL}favourites/delete/?resource_id=${id}`, {
+			method: 'DELETE',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${access_token}`
+			},
+			cache: 'no-store',
+			body: JSON.stringify({
+				resource_id: id
+			}),
+		})
+        // console.log("comment submit res",res)
+		if (res.status === 204) {
+			return { "success": true}
+		}
+
+		// console.log("Blog resposne:", data)
+		return { "success": true}
 	}
 	catch(error){
         console.log("We go inside Error")
