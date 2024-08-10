@@ -22,21 +22,17 @@ Front-end:
 3. Task 3: Ensure only the correct format can be inputed like email field.
 
 Back-end:
-4. Task 1: Implement API to handle create account request from front-end. 
-5. Task 2: Implement Token function and email sending function to send verfication email
-6. Task 3: Implement API to verifty email using token.
+1. Task 1: Implement API to handle create account request from front-end. 
+2. Task 2: Implement Token function and email sending function to send verfication email
+3. Task 3: Implement API to verifty email using token.
 
 # UI Design:
 
-[Sign up web interface](./img/Signup.png)
-[Email Sent web interface](./img/emailSent.png)
-[Email Sent to User](./img/SentEmailUser.png)
-[Email Verification Interface](./img/EmailVerification.png)
+- [Sign up web interface](./img/Signup.png)
+- [Email Sent web interface](./img/emailSent.png)
+- [Email Sent to User](./img/SentEmailUser.png)
+- [Email Verification Interface](./img/EmailVerification.png)
 
 # Completed:
 
 - User Sign Up
-    [Sign up web interface](./img/Signup.png)
-    [Email Sent web interface](./img/emailSent.png)
-    [Email Sent to User](./img/SentEmailUser.png)
-    [Email Verification Interface](./img/EmailVerification.png)
