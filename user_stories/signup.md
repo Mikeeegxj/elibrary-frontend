@@ -1,0 +1,42 @@
+# User story title: Sign Up
+
+Keep any other version here as well, e.g. Display current deals, Let user to click on "show-current-deals".
+
+## Estimation: 2 days
+
+- Guo Xiaojun:  2 days
+
+## Assumptions (if any):
+
+
+## Description:
+
+The webpage where user can signup account and after signing up, verification mail will be sent to user email and user clicks the attached link to verify the account
+
+## Tasks
+
+Front-end:
+
+1. Task 1: Add User Input field to fill user information
+2. Task 2: Display Signup Button 
+3. Task 3: Ensure only the correct format can be inputed like email field.
+
+Back-end:
+4. Task 1: Implement API to handle create account request from front-end. 
+5. Task 2: Implement Token function and email sending function to send verfication email
+6. Task 3: Implement API to verifty email using token.
+
+# UI Design:
+
+[Sign up web interface](./img/Signup.png)
+[Email Sent web interface](./img/emailSent.png)
+[Email Sent to User](./img/SentEmailUser.png)
+[Email Verification Interface](./img/EmailVerification.png)
+
+# Completed:
+
+- User Sign Up
+    [Sign up web interface](./img/Signup.png)
+    [Email Sent web interface](./img/emailSent.png)
+    [Email Sent to User](./img/SentEmailUser.png)
+    [Email Verification Interface](./img/EmailVerification.png)
