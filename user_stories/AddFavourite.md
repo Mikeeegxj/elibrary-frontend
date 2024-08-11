@@ -1,4 +1,4 @@
-# User story title: Login
+# User story title: Add Favourite
 
 Keep any other version here as well, e.g. Display current deals, Let user to click on "show-current-deals".
 
@@ -11,20 +11,19 @@ Keep any other version here as well, e.g. Display current deals, Let user to cli
 
 ## Description:
 
-The webpage where user can signup account and after signing up, verification mail will be sent to user email and user clicks the attached link to verify the account
+A feature where user can add specific resources (books) to favourite list as well as remove from the list and view the favourite book list in a sperate web page.
 
 ## Tasks
 
 Front-end:
 
-1. Task 1: Add User Input field to fill user information
-2. Task 2: Display Signup Button 
-3. Task 3: Ensure only the correct format can be inputed like email field.
+- Task 1: Add a favourite icon to add and remove from favourite list
+- Task 2: Create a webpage to display favourite list
 
 Back-end:
-1. Task 1: Implement API to handle create account request from front-end. 
-2. Task 2: Implement Token function and email sending function to send verfication email
-3. Task 3: Implement API to verifty email using token.
+
+- Task 3: Create Favourite model to store and manage favourite list
+- Task 4: Implement API to add or remove book from favourite list
 
 # UI Design:
 
@@ -34,11 +33,10 @@ Back-end:
 
 Front-end:
 
-1. Task 1: Add User Input field to fill user information
-2. Task 2: Display Signup Button 
-3. Task 3: Ensure only the correct format can be inputed like email field.
+- Task 1: Add a favourite icon to add and remove from favourite list
+- Task 2: Create a webpage to display favourite list
 
 Back-end:
-1. Task 1: Implement API to handle create account request from front-end. 
-2. Task 2: Implement Token function and email sending function to send verfication email
-3. Task 3: Implement API to verifty email using token.
+
+- Task 3: Create Favourite model to store and manage favourite list
+- Task 4: Implement API to add or remove book from favourite list

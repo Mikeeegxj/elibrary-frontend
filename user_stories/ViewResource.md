@@ -1,4 +1,4 @@
-# User story title: Login
+# User story title: View Resource
 
 Keep any other version here as well, e.g. Display current deals, Let user to click on "show-current-deals".
 
@@ -11,20 +11,20 @@ Keep any other version here as well, e.g. Display current deals, Let user to cli
 
 ## Description:
 
-The webpage where user can signup account and after signing up, verification mail will be sent to user email and user clicks the attached link to verify the account
+The webpage where user can views all the books.
 
 ## Tasks
 
 Front-end:
 
-1. Task 1: Add User Input field to fill user information
-2. Task 2: Display Signup Button 
-3. Task 3: Ensure only the correct format can be inputed like email field.
+- Task 1: Create a Book Card which display book cover and book information.
+- Task 2: Create a list of Category buttons
+- Task 3: Add a server action to fetch books and category from backend.
 
 Back-end:
-1. Task 1: Implement API to handle create account request from front-end. 
-2. Task 2: Implement Token function and email sending function to send verfication email
-3. Task 3: Implement API to verifty email using token.
+
+- Task 4: Implement API to handle book and category request from frontend.
+- Task 5: Implement a testing code to test api using pytest framework.
 
 # UI Design:
 
@@ -34,11 +34,11 @@ Back-end:
 
 Front-end:
 
-1. Task 1: Add User Input field to fill user information
-2. Task 2: Display Signup Button 
-3. Task 3: Ensure only the correct format can be inputed like email field.
+- Task 1: Create a Book Card which display book cover and book information.
+- Task 2: Create a list of Category buttons
+- Task 3: Add a server action to fetch books and category from backend.
 
 Back-end:
-1. Task 1: Implement API to handle create account request from front-end. 
-2. Task 2: Implement Token function and email sending function to send verfication email
-3. Task 3: Implement API to verifty email using token.
+
+- Task 4: Implement API to handle book and category request from frontend.
+- Task 5: Implement a testing code to test api using pytest framework.

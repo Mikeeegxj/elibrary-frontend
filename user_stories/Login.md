@@ -7,24 +7,26 @@ Keep any other version here as well, e.g. Display current deals, Let user to cli
 - Guo Xiaojun:  2 days
 
 ## Assumptions (if any):
-
+None
 
 ## Description:
 
-The webpage where user can signup account and after signing up, verification mail will be sent to user email and user clicks the attached link to verify the account
+The interface where user and login using existing account.
 
 ## Tasks
 
 Front-end:
 
-1. Task 1: Add User Input field to fill user information
-2. Task 2: Display Signup Button 
-3. Task 3: Ensure only the correct format can be inputed like email field.
+- Task 1: Add User Input field to login
+- Task 2: Display Login Button 
+- Task 3: Applied Server action to handle login request to backend
 
 Back-end:
-1. Task 1: Implement API to handle create account request from front-end. 
-2. Task 2: Implement Token function and email sending function to send verfication email
-3. Task 3: Implement API to verifty email using token.
+
+- Task 4: Implement API to handle and verity login request from front-end. 
+- Task 5: Implement Acess Token to verify authenticated user
+- Task 5: Implement Refresh Token to assgin new access token when user's access token is expired.
+
 
 # UI Design:
 
@@ -34,11 +36,12 @@ Back-end:
 
 Front-end:
 
-1. Task 1: Add User Input field to fill user information
-2. Task 2: Display Signup Button 
-3. Task 3: Ensure only the correct format can be inputed like email field.
+- Task 1: Add User Input field to login
+- Task 2: Display Login Button 
+- Task 3: Applied Server action to handle login request to backend
 
 Back-end:
-1. Task 1: Implement API to handle create account request from front-end. 
-2. Task 2: Implement Token function and email sending function to send verfication email
-3. Task 3: Implement API to verifty email using token.
+
+- Task 4: Implement API to handle and verity login request from front-end. 
+- Task 5: Implement Acess Token to verify authenticated user
+- Task 5: Implement Refresh Token to assgin new access token when user's access token is expired.

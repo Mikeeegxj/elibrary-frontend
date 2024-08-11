@@ -7,7 +7,7 @@ Keep any other version here as well, e.g. Display current deals, Let user to cli
 - Guo Xiaojun:  2 days
 
 ## Assumptions (if any):
-
+None
 
 ## Description:
 
@@ -17,14 +17,15 @@ The webpage where user can signup account and after signing up, verification mai
 
 Front-end:
 
-1. Task 1: Add User Input field to fill user information
-2. Task 2: Display Signup Button 
-3. Task 3: Ensure only the correct format can be inputed like email field.
+- Task 1: Add User Input field to fill user information
+- Task 2: Display Signup Button 
+- Task 3: Ensure only the correct format can be inputed like email field.
 
 Back-end:
-1. Task 1: Implement API to handle create account request from front-end. 
-2. Task 2: Implement Token function and email sending function to send verfication email
-3. Task 3: Implement API to verifty email using token.
+
+- Task 4: Implement API to handle create account request from front-end. 
+- Task 5: Implement Token function and email sending function to send verfication email
+- Task 6: Implement API to verifty email using token.
 
 # UI Design:
 
@@ -37,11 +38,11 @@ Back-end:
 
 Front-end:
 
-1. Task 1: Add User Input field to fill user information
-2. Task 2: Display Signup Button 
-3. Task 3: Ensure only the correct format can be inputed like email field.
+- Task 1: Add User Input field to fill user information
+- Task 2: Display Signup Button 
+- Task 3: Ensure only the correct format can be inputed like email field.
 
 Back-end:
-1. Task 1: Implement API to handle create account request from front-end. 
-2. Task 2: Implement Token function and email sending function to send verfication email
-3. Task 3: Implement API to verifty email using token.
+- Task 4: Implement API to handle create account request from front-end. 
+- Task 5: Implement Token function and email sending function to send verfication email
+- Task 6: Implement API to verifty email using token.
